@@ -1,4 +1,4 @@
-# nma-gap-bot
+cd d# nma-gap-bot
 
 ## ⚙️ Loyihani Sozlash (Project Setup)
 
