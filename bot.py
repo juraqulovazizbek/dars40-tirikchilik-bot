@@ -1,127 +1,123 @@
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram.ext import Application, CommandHandler, MessageHandler, filters
 from config import Config
 from callbacks import (
-    start,                     # /start - asosiy menyu
-    send_about,                # ℹ️ Ma'lumot - kompaniya yoki bot haqida
-    change_language,           # 🌐 Tilni tanlash - tilni o'zgartirish
-    sendFeedback,              # ✍️ Izoh qoldirish - foydalanuvchi fikri
-    send_cart,                 # 📥 Savat - foydalanuvchi savati
-    send_partnership_info,     # 💼 Hamkorlik - kompaniya bilan hamkorlik
-    send_feedback_response5,   # 😊 Menga hamma narsa yoqdi, 5 ❤️
-    send_feedback_response4,   # ☺️ Yaxshi, 4 ⭐️⭐️⭐️⭐️
-    send_feedback_response3,   # 😐 Qo'niqarli, 3 ⭐️⭐️⭐️
-    send_feedback_response2,   # ☹️ Yoqmadi, 2 ⭐️⭐️
-    send_feedback_response1,   # 😤 Men shikoyat qilmoqchiman 👎🏻
-    send_delivery_terms,       # 🚀 Yetkazib berish shartlari
-    send_contacts              # ☎️ Kontaktlar
+    start,                     
+    send_about,                
+    change_language,           
+    sendFeedback,              
+    send_cart,                 
+    send_partnership_info,     
+    send_feedback_response5,   
+    send_feedback_response4,   
+    send_feedback_response3,   
+    send_feedback_response2,   
+    send_feedback_response1,   
+    send_delivery_terms,       
+    send_contacts              
 )
 
-
 def main():
-    updater = Updater(Config.TOKEN)
-    dispatcher = updater.dispatcher
+    application = Application.builder().token(Config.TOKEN).build()
 
-    dispatcher.add_handler(
+    application.add_handler(
         CommandHandler(
             command='start',
             callback=start
         )
     )
 
-    dispatcher.add_handler(
+    application.add_handler(
         MessageHandler(
-            Filters.text('📥 Savat'),
+            filters.TEXT & filters.Regex('^📥 Savat$'),
             callback=send_cart
         )
     )
 
-    dispatcher.add_handler(
+    application.add_handler(
         MessageHandler(
-            Filters.text('💼 Hamkorlik'),
+            filters.TEXT & filters.Regex('^💼 Hamkorlik$'),
             callback=send_partnership_info
         )
     )
 
-    dispatcher.add_handler(
+    application.add_handler(
         MessageHandler(
-            Filters.text("ℹ️ Ma'lumot"),
+            filters.TEXT & filters.Regex('^ℹ️ Ma\'lumot$'),
             callback=send_about
         )
     )
 
-    dispatcher.add_handler(
+    application.add_handler(
         MessageHandler(
-            Filters.text("🌐 Tilni tanlash"),
+            filters.TEXT & filters.Regex('^🌐 Tilni tanlash$'),
             callback=change_language
         )
     )
 
-    dispatcher.add_handler(
+    application.add_handler(
         MessageHandler(
-            Filters.text('🏠 Bosh menyu'),
+            filters.TEXT & filters.Regex('^🏠 Bosh menyu$'),
             callback=start
         )
     )
 
-    dispatcher.add_handler(
+    application.add_handler(
         MessageHandler(
-            Filters.text('✍️ Izoh qoldirish'),
+            filters.TEXT & filters.Regex('^✍️ Izoh qoldirish$'),
             callback=sendFeedback
         )
     )
 
-    dispatcher.add_handler(
+    application.add_handler(
         MessageHandler(
-            Filters.text('🚀 Yetkazib berish shartlari'),
+            filters.TEXT & filters.Regex('^🚀 Yetkazib berish shartlari$'),
             callback=send_delivery_terms
         )
     )
 
-    dispatcher.add_handler(
+    application.add_handler(
         MessageHandler(
-            Filters.text('☎️ Kontaktlar'),
+            filters.TEXT & filters.Regex('^☎️ Kontaktlar$'),
             callback=send_contacts
         )
     )
 
-    dispatcher.add_handler(
+    application.add_handler(
         MessageHandler(
-            Filters.text('😊 Menga hamma narsa yoqdi, 5 ❤️'),
+            filters.TEXT & filters.Regex('^😊 Menga hamma narsa yoqdi, 5 ❤️$'),
             callback=send_feedback_response5
         )
     )
 
-    dispatcher.add_handler(
+    application.add_handler(
         MessageHandler(
-            Filters.text('☺️ Yaxshi, 4 ⭐️⭐️⭐️⭐️'),
+            filters.TEXT & filters.Regex('^☺️ Yaxshi, 4 ⭐️⭐️⭐️⭐️$'),
             callback=send_feedback_response4
         )
     )
 
-    dispatcher.add_handler(
+    application.add_handler(
         MessageHandler(
-            Filters.text("😐 Qo'niqarli, 3⭐️⭐️⭐️"),
+            filters.TEXT & filters.Regex('^😐 Qo\'niqarli, 3⭐️⭐️⭐️$'),
             callback=send_feedback_response3
         )
     )
 
-    dispatcher.add_handler(
+    application.add_handler(
         MessageHandler(
-            Filters.text('☹️ Yoqmadi, 2 ⭐️⭐️'),
+            filters.TEXT & filters.Regex('^☹️ Yoqmadi, 2 ⭐️⭐️$'),
             callback=send_feedback_response2
         )
     )
 
-    dispatcher.add_handler(
+    application.add_handler(
         MessageHandler(
-            Filters.text('😤 Men shikoyat qilmoqchiman 👎🏻'),
+            filters.TEXT & filters.Regex('^😤 Men shikoyat qilmoqchiman 👎🏻$'),
             callback=send_feedback_response1
         )
     )
 
-    updater.start_polling()
-    updater.idle()
-
+    application.run_polling()
 
 if __name__ == '__main__':
     main()

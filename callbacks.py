@@ -8,7 +8,7 @@ from telegram import (
 )
 from telegram.ext import CallbackContext
 
-def start(update: Update, context: CallbackContext) -> None:
+async def start(update: Update, context: CallbackContext) -> None:
     update.message.reply_text(
         text=(
             f"Assalomu Alaykum, ⚡!\n\n"
@@ -45,21 +45,21 @@ def start(update: Update, context: CallbackContext) -> None:
     )
     
     
-def send_partnership_info(update: Update, context: CallbackContext) -> None:
-    update.message.reply_text(
+async def send_partnership_info(update: Update, context: CallbackContext) -> None:
+    await update.message.reply_text(
             "Biz sizning kompaniyangiz bilan hamkorlik qilishdan mamnunmiz "
             "va sizning buyurtmangizga asosan futbolkalar, xudi, svitshot va boshqa "
             "ko'p narsalarni tayyorlashimiz mumkin.\n\n"
             "Menejer bilan bog'lanish uchun: @tirik_chilik"
         )
 
-def send_cart(update: Update, context: CallbackContext) -> None:
-    update.message.reply_text(
+async def send_cart(update: Update, context: CallbackContext) -> None:
+    await update.message.reply_text(
         "Sizning savatingiz bo'sh"
         )
 
-def send_about(update: Update, context: CallbackContext) -> None:
-    update.message.reply_text(
+async def send_about(update: Update, context: CallbackContext) -> None:
+    await update.message.reply_text(
         text="Kerakli bo'limni tanlang ⬇",
         reply_markup=ReplyKeyboardMarkup(
             keyboard=[
@@ -85,8 +85,8 @@ def send_about(update: Update, context: CallbackContext) -> None:
             ]
         )
     )
-def sendFeedback(update: Update, context: CallbackContext) -> None:
-    update.message.reply_text(
+async def sendFeedback(update: Update, context: CallbackContext) -> None:
+    await update.message.reply_text(
         text=(
             "✅ Tirikchilik loyihasini tanlaganingiz uchun rahmat.\n\n"
             "Bizning xizmatlarimiz sifatini yaxshilashga yordam bersangiz juda xursand bo’lar edik :)\n\n"
@@ -105,38 +105,38 @@ def sendFeedback(update: Update, context: CallbackContext) -> None:
         )
     )
 
-def send_feedback_response5(update: Update, context: CallbackContext) -> None:
-    update.message.reply_text(
+async def send_feedback_response5(update: Update, context: CallbackContext) -> None:
+    await update.message.reply_text(
         "Mamnun qolganingizdan xursandmiz 😊. Siz va yaqinlaringizni har doim xursand qilishga harakat qilamiz 🤗"
         )
-def send_feedback_response4(update: Update, context: CallbackContext) -> None:
-    update.message.reply_text(
+async def send_feedback_response4(update: Update, context: CallbackContext) -> None:
+    await update.message.reply_text(
       "Sizga yoqqanidan xursandmiz 😊. Bot ishlashini yaxshilash uchun qanday maslahatlaringiz bor?👇🏻"
 
         )
-def send_feedback_response3(update: Update, context: CallbackContext) -> None:
-    update.message.reply_text(
+async def send_feedback_response3(update: Update, context: CallbackContext) -> None:
+    await update.message.reply_text(
        "Botimiz sizni qoniqtirmaganidan afsusdamiz 😔.\nBizni yaxshilashga yordam bering,\nsharh va takliflaringizni qoldiring👇🏻.\nYaxshilashga harakat qilamiz🙏🏻."
 
         )
-def send_feedback_response2(update: Update, context: CallbackContext) -> None:
-    update.message.reply_text(
+async def send_feedback_response2(update: Update, context: CallbackContext) -> None:
+    await update.message.reply_text(
       "Botimiz sizni qoniqtirmaganidan afsusdamiz 😔. Bizni yaxshilashga yordam bering, sharh va takliflaringizni qoldiring👇🏻. Yaxshilashga harakat qilamiz🙏🏻."
 
         )
-def send_feedback_response1(update: Update, context: CallbackContext) -> None:
-    update.message.reply_text(
+async def send_feedback_response1(update: Update, context: CallbackContext) -> None:
+    await update.message.reply_text(
        "Botimiz sizni qoniqtirmaganidan afsusdamiz 😔. Bizni yaxshilashga yordam bering, sharh va takliflaringizni qoldiring👇🏻. Yaxshilashga harakat qilamiz🙏🏻."
 
         )
 
-def send_contacts(update: Update, context: CallbackContext) -> None:
-    update.message.reply_text(
+async def send_contacts(update: Update, context: CallbackContext) -> None:
+    await update.message.reply_text(
         "Teskari aloqa uchun:\n@tirik_chilik"
 
         )
-def send_delivery_terms(update: Update, context: CallbackContext) -> None:
-    update.message.reply_text(
+async def send_delivery_terms(update: Update, context: CallbackContext) -> None:
+    await update.message.reply_text(
         """Yetkazib berish shartlari:
         Toshkent bo‘yicha yetkazib berish: 1–3 ish kuni
         O‘zbekiston bo‘yicha yetkazib berish: 3–7 ish kuni
@@ -150,8 +150,8 @@ def send_delivery_terms(update: Update, context: CallbackContext) -> None:
         )
 
   
-def change_language(update: Update, context: CallbackContext) -> None:
-    update.message.reply_text(
+async def change_language(update: Update, context: CallbackContext) -> None:
+    await update.message.reply_text(
         text="Iltimos, tilni tanlang\nПожалуйста, выберите язык ⬇️",
         reply_markup=InlineKeyboardMarkup(
             inline_keyboard=[
@@ -168,5 +168,5 @@ def change_language(update: Update, context: CallbackContext) -> None:
                     )
                 ]
             ]
-        )
+        )   
     )
